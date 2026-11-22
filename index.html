@@ -13,7 +13,8 @@ html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Archivo",system-ui,sans-serif}
 .wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
-.marca{font-weight:900;font-stretch:125%;font-size:clamp(2.6rem,10vw,5.2rem);line-height:.9;letter-spacing:-.03em;margin:8px 0 4px}
+.marca{font-weight:900;font-stretch:125%;font-size:clamp(2.6rem,10vw,5.2rem);line-height:.9;letter-spacing:-.03em;margin:8px 0 4px;display:flex;align-items:center;gap:.22em}
+.logo{height:.95em;width:auto;display:block}
 .lema{margin:0 0 18px;color:var(--mute);max-width:46ch}
 nav{display:flex;flex-wrap:wrap;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:24px}
 nav button{font:inherit;font-weight:600;background:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
@@ -23,7 +24,7 @@ h3{font-size:1.05rem;margin:0 0 4px}
 .m{color:var(--mute);margin:0 0 6px;font-size:.93rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-.img{padding:14px 18px}.img svg{width:100%;height:auto;display:block}
+.img svg{width:100%;height:auto;display:block;padding:14px 18px}.img img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .in{padding:12px 14px 16px;display:flex;flex-direction:column;flex:1}
 .pr{font-weight:800;font-size:1.25rem;margin:4px 0}
 .ok{color:var(--ok);font-weight:600;margin:0 0 10px}.w{color:var(--w);font-weight:600;margin:0 0 10px}.mal{color:var(--mal);font-weight:600;margin:0 0 10px}
@@ -52,7 +53,7 @@ small.n{color:var(--mute);display:block;margin-top:12px}
 </head>
 <body>
 <div class="wrap">
-  <h1 class="marca">CapOne</h1>
+  <h1 class="marca"><img class="logo" src="img/logo.png" alt="Logo de CapOne" data-b="img/logo" data-n="0">CapOne</h1>
   <p class="lema">Gorras urbanas y exclusivas. Mira lo que hay, arma tu pedido y nosotros lo despachamos.</p>
   <nav aria-label="Secciones">
     <button data-ir="catalogo">Catálogo</button>
@@ -104,8 +105,8 @@ class Inventario {
   }
 }
 class Producto {
-  constructor(id,nombre,descripcion,categoria,precio,color,stock){
-    Object.assign(this,{id,nombre,descripcion,categoria,precio,color});
+  constructor(id,nombre,descripcion,categoria,precio,color,stock,foto){
+    Object.assign(this,{id,nombre,descripcion,categoria,precio,color,foto});
     this.inventario=new Inventario(stock);           // el inventario solo se toca desde Producto
   }
   disponible(){return this.inventario.consultarDisponibilidad()}
@@ -164,13 +165,13 @@ class Tienda {
     try{d=JSON.parse(localStorage.getItem("capone")||"null")}catch(e){}
     if(!d||!Array.isArray(d.productos)||!Array.isArray(d.pedidos)) d={productos:SEMILLA,pedidos:[],sig:1};
     this.sig=d.sig||1;
-    this.productos=d.productos.map(p=>new Producto(p.id,p.nombre,p.descripcion,p.categoria,p.precio,p.color,p.stock));
+    this.productos=d.productos.map(p=>new Producto(p.id,p.nombre,p.descripcion,p.categoria,p.precio,p.color,p.stock,p.foto));
     this.pedidos=d.pedidos.map(o=>new Pedido(o.id,o.fecha,new Cliente(0,o.cliente.nombre,o.cliente.telefono,o.cliente.direccion),
       o.detalles.map(x=>new DetallePedido(x.idProducto,x.nombre,x.cantidad,x.precioUnitario)),o.estado));
   }
   guardar(){
     const d={sig:this.sig,
-      productos:this.productos.map(p=>({id:p.id,nombre:p.nombre,descripcion:p.descripcion,categoria:p.categoria,precio:p.precio,color:p.color,stock:p.disponible()})),
+      productos:this.productos.map(p=>({id:p.id,nombre:p.nombre,descripcion:p.descripcion,categoria:p.categoria,precio:p.precio,color:p.color,foto:p.foto,stock:p.disponible()})),
       pedidos:this.pedidos.map(o=>({id:o.id,fecha:o.fecha,estado:o.estado,cliente:{nombre:o.cliente.nombre,telefono:o.cliente.telefono,direccion:o.cliente.direccion},detalles:o.detalles}))};
     try{localStorage.setItem("capone",JSON.stringify(d))}catch(e){}
   }
@@ -195,7 +196,7 @@ class Tienda {
   agregarProducto(d){
     const precio=Number(d.precio),stock=Number(d.stock);
     if(!d.nombre.trim()) throw new Error("El producto necesita un nombre.");
-    const p=new Producto("g"+Date.now().toString(36),d.nombre.trim(),d.descripcion.trim(),d.categoria.trim()||"General",1,col(d.color),0);
+    const p=new Producto("g"+Date.now().toString(36),d.nombre.trim(),d.descripcion.trim(),d.categoria.trim()||"General",1,col(d.color),0,(d.foto||"").trim());
     p.actualizarPrecio(precio); p.inventario.actualizarCantidad(stock);
     this.productos.push(p); this.guardar();
   }
@@ -207,6 +208,18 @@ const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const cop=n=>new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(n);
 const col=c=>/^#[0-9a-f]{6}$/i.test(c)?c:"#1b1f27";
 const gorra=c=>`<svg viewBox="0 0 130 80" role="img" aria-label="Gorra"><path d="M18 56C18 26 38 12 60 12s42 14 42 44z" fill="${c}" stroke="currentColor" stroke-width="2"/><path d="M18 56h84c16 0 26 5 26 9 0 5-14 7-34 7H18z" fill="${c}" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="12" r="4" fill="${c}" stroke="currentColor" stroke-width="2"/></svg>`;
+/* Fotos: se buscan en la carpeta img/ (si no existen, se dibuja la gorra) */
+const EXT=["png","jpg","jpeg","webp","svg"];
+const foto=p=>{const c=col(p.color);
+ return p.foto&&/^[\w\-. ]+\.\w+$/.test(p.foto)
+  ?`<img src="img/${encodeURI(p.foto)}" alt="${esc(p.nombre)}" data-fijo="1" data-c="${c}">`
+  :`<img src="img/${esc(p.id)}.png" alt="${esc(p.nombre)}" data-b="img/${esc(p.id)}" data-n="0" data-c="${c}">`};
+function sig(i){
+ const n=Number(i.dataset.n||0)+1;
+ if(!i.dataset.fijo&&i.dataset.b&&n<EXT.length){i.dataset.n=n;i.src=i.dataset.b+"."+EXT[n];return}
+ if(i.dataset.c)i.outerHTML=gorra(i.dataset.c);else i.remove();
+}
+document.addEventListener("error",e=>{if(e.target.tagName==="IMG")sig(e.target)},true);
 const T=new Tienda(),C=new Carrito();
 let vista="catalogo",tel="",ultimo=null;
 const VISTAS=["catalogo","carrito","pedidos","admin"];
@@ -224,7 +237,7 @@ function tarjeta(p,admin){
 }
 const pantallas={
 catalogo(){return `<h2>Catálogo</h2><p class="m">La disponibilidad sale del inventario en tiempo real: si una gorra se agota, ya no se puede pedir.</p><div class="grid">${T.productos.map(p=>{const d=p.disponible(),c=col(p.color);
- return `<article class="card"><div class="img" style="background:color-mix(in srgb,${c} 16%,var(--card))">${gorra(c)}</div><div class="in"><h3>${esc(p.nombre)}</h3><p class="m">${esc(p.descripcion)}</p><p class="m">${esc(p.categoria)}</p><p class="pr">${cop(p.precio)}</p><p class="${d?(d<4?"w":"ok"):"mal"}">${d?(d<4?"Quedan "+d:"Disponible"):"Agotada"}</p><button class="b" data-act="add" data-id="${esc(p.id)}" ${d?"":"disabled"}>Agregar al carrito</button></div></article>`}).join("")}</div>`},
+ return `<article class="card"><div class="img" style="background:color-mix(in srgb,${c} 16%,var(--card))">${foto(p)}</div><div class="in"><h3>${esc(p.nombre)}</h3><p class="m">${esc(p.descripcion)}</p><p class="m">${esc(p.categoria)}</p><p class="pr">${cop(p.precio)}</p><p class="${d?(d<4?"w":"ok"):"mal"}">${d?(d<4?"Quedan "+d:"Disponible"):"Agotada"}</p><button class="b" data-act="add" data-id="${esc(p.id)}" ${d?"":"disabled"}>Agregar al carrito</button></div></article>`}).join("")}</div>`},
 carrito(){
  let o=`<h2>Tu carrito</h2>`;
  if(ultimo) o+=`<div class="ped"><strong>¡Listo, ${esc(ultimo.cliente.nombre)}! Tu pedido ${esc(ultimo.id)} quedó registrado.</strong><p class="m">Total ${cop(ultimo.calcularTotal())}. Estado: ${esc(ultimo.estado)}. Con tu teléfono puedes consultarlo en “Mis pedidos”.</p></div>`;
@@ -245,7 +258,7 @@ admin(){
  if(!T.sesion) return `<h2>Administrar</h2><form class="f" data-f="login"><label>Usuario<input name="usuario" required autocomplete="username"></label><label>Contraseña<input name="clave" type="password" required autocomplete="current-password"></label><button class="b" type="submit">Entrar</button></form><small class="n">Demo académica: usuario admin, contraseña 1234.</small>`;
  return `<h2>Productos e inventario</h2><button class="g s" data-act="salir">Cerrar sesión</button>`+
  T.productos.map(p=>`<div class="ed"><strong>${esc(p.nombre)}</strong><label>Precio<input id="pr-${esc(p.id)}" type="number" min="1" value="${p.precio}"></label><label>Stock<input id="st-${esc(p.id)}" type="number" min="0" value="${p.disponible()}"></label><button class="b s" data-act="guardar" data-id="${esc(p.id)}">Guardar</button><button class="g s" data-act="borrar" data-id="${esc(p.id)}">Eliminar</button></div>`).join("")+
- `<form class="f" data-f="nuevo"><h3>Agregar producto</h3><label>Nombre<input name="nombre" required></label><label>Descripción<input name="descripcion"></label><label>Categoría<input name="categoria"></label><label>Precio<input name="precio" type="number" min="1" required></label><label>Cantidad inicial<input name="stock" type="number" min="0" value="0" required></label><label>Color de la gorra<input name="color" type="color" value="#1f4bff"></label><button class="b" type="submit">Agregar producto</button></form>
+ `<form class="f" data-f="nuevo"><h3>Agregar producto</h3><label>Nombre<input name="nombre" required></label><label>Descripción<input name="descripcion"></label><label>Categoría<input name="categoria"></label><label>Precio<input name="precio" type="number" min="1" required></label><label>Cantidad inicial<input name="stock" type="number" min="0" value="0" required></label><label>Nombre de la foto (opcional, ej. mi-gorra.jpg)<input name="foto"></label><label>Color de la gorra<input name="color" type="color" value="#1f4bff"></label><button class="b" type="submit">Agregar producto</button></form>
  <h2 style="margin-top:32px">Pedidos recibidos</h2>`+
  (T.pedidos.length?T.admin.consultarPedido(T).map(p=>tarjeta(p,true)).join(""):`<p class="m">Aún no hay pedidos.</p>`)}
 };
