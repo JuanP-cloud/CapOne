@@ -49,13 +49,13 @@ input,select{display:block;width:100%;max-width:420px;padding:8px;margin-top:4px
     <img id="logo" src="img/logo.png" data-nombre="logo" alt="Logo de CapOne" onerror="probar(this)">
     <h1>CapOne</h1>
   </header>
-  <p class="lema">Gorras urbanas y exclusivas. Mira lo que hay, arma tu pedido y nosotros lo despachamos.</p>
+  <p class="lema">Las más exclusivas de todo el valle de aburrá. Arma tu pedido y nosotros lo despachamos.</p>
 
   <nav>
     <button onclick="mostrar('catalogo')">Catálogo</button>
     <button onclick="mostrar('carrito')" id="btnCarrito">Carrito (0)</button>
     <button onclick="mostrar('pedidos')">Mis pedidos</button>
-    <button onclick="mostrar('admin')">Administrar</button>
+    <button onclick="mostrar('admin')">Administrador</button>
   </nav>
 
   <section id="catalogo">
@@ -311,12 +311,12 @@ class Tienda {
   }
   cargarSemilla() {
     this.productos = [
-      new Producto("g1", "Snapback Negra Clásica", "Visera plana, ajuste snapback.", 65000, "g1", 12),
+      new Producto("g1", "Snapback Negra Clásica", "Visera semi plana, ajuste snapback.", 65000, "g1", 12),
       new Producto("g2", "Trucker Vino", "Malla trasera, ideal para el calor.", 58000, "g2", 8),
-      new Producto("g3", "Dad Hat Arena", "Visera curva y tela suave.", 55000, "g3", 3),
-      new Producto("g4", "Visera Azul Eléctrico", "Edición urbana limitada.", 78000, "g4", 5),
+      new Producto("g3", "Dad Hat Arena", "Visera semi plana y tela suave.", 55000, "g3", 3),
+      new Producto("g4", "NY Azul rey", "Edición urbana limitada.", 78000, "g4", 5),
       new Producto("g5", "Camuflada Selva", "Estampado camuflado, ajustable.", 70000, "g5", 0),
-      new Producto("g6", "Beisbolera Blanca", "Bordado frontal CapOne.", 60000, "g6", 10)
+      new Producto("g6", "Beisbolera Blanca visera negra", "Bordado frontal CapOne.", 60000, "g6", 10)
     ];
     this.pedidos = [];
     this.contador = 1;
