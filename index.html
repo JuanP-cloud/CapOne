@@ -117,7 +117,7 @@ class Carrito {
   #items=new Map();
   agregarProducto(p,n=1){
     const nueva=(this.#items.get(p.id)?.cantidad||0)+n;
-    if(nueva>p.disponible()) throw new Error(p.disponible()===0?"Esa gorra está agotada.":"Solo quedan "+p.disponible()+" de esta gorra.");
+    if(nueva>p.disponible()) throw new Error(p.disponible()===0?"Esa gorra se encuentra agotada.":"Solo quedan "+p.disponible()+" de esta gorra.");
     this.#items.set(p.id,{producto:p,cantidad:nueva});
   }
   eliminarProducto(id){this.#items.delete(id)}
