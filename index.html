@@ -2,302 +2,668 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CapOne – Gorras urbanas</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
 <style>
-:root{--bg:#EDEEF0;--ink:#12151C;--mute:#566070;--line:#C9CED6;--card:#FFFFFF;--acc:#1F4BFF;--on:#FFFFFF;--mal:#B3261E;--ok:#18794E;--w:#8A5A00;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1218;--ink:#EDEEF0;--mute:#9AA2B0;--line:#2A303B;--card:#181C24;--acc:#7C97FF;--on:#0B0E14;--mal:#FF8A80;--ok:#4CC38A;--w:#E3B341;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1218;--ink:#EDEEF0;--mute:#9AA2B0;--line:#2A303B;--card:#181C24;--acc:#7C97FF;--on:#0B0E14;--mal:#FF8A80;--ok:#4CC38A;--w:#E3B341;color-scheme:dark}
-html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Archivo",system-ui,sans-serif}
-.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
-.marca{font-weight:900;font-stretch:125%;font-size:clamp(2.6rem,10vw,5.2rem);line-height:.9;letter-spacing:-.03em;margin:8px 0 4px;display:flex;align-items:center;gap:.22em}
-.logo{height:.95em;width:auto;display:block}
-.lema{margin:0 0 18px;color:var(--mute);max-width:46ch}
-nav{display:flex;flex-wrap:wrap;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:24px}
-nav button{font:inherit;font-weight:600;background:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
-nav button[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-h2{font-stretch:112%;font-weight:800;font-size:1.7rem;margin:0 0 6px;letter-spacing:-.01em}
-h3{font-size:1.05rem;margin:0 0 4px}
-.m{color:var(--mute);margin:0 0 6px;font-size:.93rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-.img svg{width:100%;height:auto;display:block;padding:14px 18px}.img img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-.in{padding:12px 14px 16px;display:flex;flex-direction:column;flex:1}
-.pr{font-weight:800;font-size:1.25rem;margin:4px 0}
-.ok{color:var(--ok);font-weight:600;margin:0 0 10px}.w{color:var(--w);font-weight:600;margin:0 0 10px}.mal{color:var(--mal);font-weight:600;margin:0 0 10px}
-.in button{margin-top:auto}
-.b,.g{font:inherit;font-weight:700;border-radius:4px;padding:10px 16px;cursor:pointer;border:2px solid var(--acc)}
-.b{background:var(--acc);color:var(--on)}.g{background:none;color:var(--acc)}
-.b:disabled{opacity:.45;cursor:not-allowed}
-.s{padding:6px 12px;font-size:.9rem}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-form.f{display:grid;gap:12px;max-width:460px;margin-top:16px}
-label{display:grid;gap:4px;font-weight:600;font-size:.92rem}
-input,select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);width:100%}
-.fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin-top:10px}
-.fila .qty{display:flex;gap:8px;align-items:center}
-.tot{font-size:1.4rem;font-weight:800;margin:16px 0 0}
-.ped{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:6px;padding:12px 14px;margin-top:12px}
-.ped ul{margin:6px 0;padding-left:18px}
-.est{display:inline-block;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:1px 10px;font-size:.85rem}
-.acc{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}.acc select{width:auto}
-.ed{display:grid;grid-template-columns:1fr 110px 80px auto auto;gap:8px;align-items:end;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin-top:8px}
-@media(max-width:640px){.ed{grid-template-columns:1fr 1fr}.ed>strong{grid-column:1/-1}}
-#aviso{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:6px;font-weight:600;display:none;max-width:90vw;z-index:5}
-#aviso.on{display:block}#aviso.mal{background:var(--mal);color:var(--bg)}
-small.n{color:var(--mute);display:block;margin-top:12px}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef0f3;color:#14181f;line-height:1.5}
+.contenedor{max-width:1000px;margin:0 auto;padding:16px 16px 48px}
+header{display:flex;align-items:center;gap:12px}
+header img{height:64px;width:auto}
+h1{font-size:2.8rem;margin:0;letter-spacing:-1px}
+.lema{color:#566070;margin:4px 0 16px}
+nav{display:flex;flex-wrap:wrap;gap:8px;border-bottom:2px solid #14181f;padding-bottom:12px;margin-bottom:20px}
+nav button{background:#fff;color:#14181f;border:1px solid #c9ced6;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:1rem}
+nav button:hover{background:#14181f;color:#fff}
+section{display:none}
+h2{margin:0 0 6px}
+.suave{color:#566070;margin:2px 0 6px;font-size:.93rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-top:16px}
+.tarjeta{background:#fff;border:1px solid #c9ced6;border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.tarjeta img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#dfe2e7}
+.info{padding:10px 14px 14px;display:flex;flex-direction:column;flex:1}
+.info h3{margin:0 0 4px}
+.info button{margin-top:auto}
+.precio{font-weight:bold;font-size:1.2rem;margin:4px 0}
+.verde{color:#18794e;font-weight:bold;margin:0 0 8px}
+.amarillo{color:#8a5a00;font-weight:bold;margin:0 0 8px}
+.rojo{color:#b3261e;font-weight:bold;margin:0 0 8px}
+button{background:#1f4bff;color:#fff;border:2px solid #1f4bff;border-radius:4px;padding:9px 16px;font-size:1rem;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.peq{padding:4px 12px;font-size:.9rem}
+button.claro{background:#fff;color:#1f4bff}
+label{display:block;font-weight:bold;margin-top:10px}
+input,select{display:block;width:100%;max-width:420px;padding:8px;margin-top:4px;font-size:1rem;border:1px solid #c9ced6;border-radius:4px;box-sizing:border-box}
+.fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:#fff;border:1px solid #c9ced6;border-radius:6px;padding:10px 14px;margin-top:10px}
+.total{font-size:1.4rem;font-weight:bold}
+.pedido{background:#fff;border:1px solid #c9ced6;border-left:6px solid #1f4bff;border-radius:6px;padding:10px 14px;margin-top:12px}
+.estado{border:1px solid #14181f;border-radius:20px;padding:1px 10px;font-size:.85rem;font-weight:bold}
+.editar{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;background:#fff;border:1px solid #c9ced6;border-radius:6px;padding:10px 14px;margin-top:8px}
+.editar input{width:110px}
+#mensaje{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);padding:10px 18px;border-radius:6px;color:#fff;background:#14181f;display:none;z-index:5}
+#mensaje.error{background:#b3261e}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1 class="marca"><img class="logo" src="img/logo.png" alt="Logo de CapOne" data-b="img/logo" data-n="0">CapOne</h1>
-  <p class="lema">Las gorras más exclusivas en el valle de Aburrá. Arma tu pedido y nosotros lo despachamos a cualquier parte del país.</p>
-  <nav aria-label="Secciones">
-    <button data-ir="catalogo">Catálogo</button>
-    <button data-ir="carrito" id="nc">Carrito</button>
-    <button data-ir="pedidos">Mis pedidos</button>
-    <button data-ir="admin">Administrador</button>
-  </nav>
-  <main id="app"></main>
-</div>
-<div id="aviso" role="status" aria-live="polite"></div>
-<script>
-"use strict";
-/* ===== Clases del modelo (mismas del diagrama UML) ===== */
-const EstadoPedido = Object.freeze({PENDIENTE:"Pendiente de despacho",ENVIADO:"Enviado",ENTREGADO:"Entregado",CANCELADO:"Cancelado"});
-const TRANS = {[EstadoPedido.PENDIENTE]:[EstadoPedido.ENVIADO,EstadoPedido.CANCELADO],[EstadoPedido.ENVIADO]:[EstadoPedido.ENTREGADO]};
+<div class="contenedor">
+  <header>
+    <img id="logo" src="img/logo.png" data-nombre="logo" alt="Logo de CapOne" onerror="probar(this)">
+    <h1>CapOne</h1>
+  </header>
+  <p class="lema">Gorras urbanas y exclusivas. Mira lo que hay, arma tu pedido y nosotros lo despachamos.</p>
 
-class Usuario {                       // clase abstracta
-  #id; #nombre; #telefono;
-  constructor(id,nombre,telefono){
-    if(new.target===Usuario) throw new Error("Usuario es abstracta, no se puede instanciar.");
-    this.#id=id; this.#nombre=nombre; this.#telefono=telefono;
+  <nav>
+    <button onclick="mostrar('catalogo')">Catálogo</button>
+    <button onclick="mostrar('carrito')" id="btnCarrito">Carrito (0)</button>
+    <button onclick="mostrar('pedidos')">Mis pedidos</button>
+    <button onclick="mostrar('admin')">Administrar</button>
+  </nav>
+
+  <section id="catalogo">
+    <h2>Catálogo</h2>
+    <p class="suave">La disponibilidad sale del inventario: si una gorra se agota, ya no se puede pedir.</p>
+    <div id="listaCatalogo" class="grid"></div>
+  </section>
+
+  <section id="carrito">
+    <h2>Tu carrito</h2>
+    <div id="confirmacion"></div>
+    <div id="listaCarrito"></div>
+    <div id="datosEnvio">
+      <h3>Datos para el envío</h3>
+      <label>Nombre completo <input id="nombre"></label>
+      <label>Teléfono (solo números) <input id="telefono" placeholder="3001234567"></label>
+      <label>Dirección de entrega <input id="direccion"></label>
+      <p><button onclick="confirmarPedido()">Confirmar pedido</button>
+      <button class="claro" onclick="vaciar()">Vaciar carrito</button></p>
+      <p class="suave">Pago simulado: en esta etapa no hay conexión con bancos.</p>
+    </div>
+  </section>
+
+  <section id="pedidos">
+    <h2>Mis pedidos</h2>
+    <p class="suave">Escribe el teléfono que usaste al comprar.</p>
+    <label>Teléfono <input id="telBuscar"></label>
+    <p><button onclick="buscarPedidos()">Buscar</button></p>
+    <div id="listaMisPedidos"></div>
+  </section>
+
+  <section id="admin">
+    <h2>Administrar</h2>
+    <div id="loginAdmin">
+      <label>Usuario <input id="usuario"></label>
+      <label>Contraseña <input id="clave" type="password"></label>
+      <p><button onclick="entrarAdmin()">Entrar</button></p>
+      <p class="suave">Demo académica: usuario admin, contraseña 1234.</p>
+    </div>
+    <div id="panelAdmin">
+      <button class="claro peq" onclick="salirAdmin()">Cerrar sesión</button>
+      <h3>Productos e inventario</h3>
+      <div id="listaAdminProductos"></div>
+      <h3>Agregar producto</h3>
+      <label>Nombre <input id="nuevoNombre"></label>
+      <label>Precio <input id="nuevoPrecio" type="number" min="1"></label>
+      <label>Cantidad inicial <input id="nuevoStock" type="number" min="0" value="0"></label>
+      <label>Nombre de la foto, sin la terminación (ej. mi-gorra) <input id="nuevoFoto"></label>
+      <p><button onclick="agregarProducto()">Agregar producto</button></p>
+      <h3>Pedidos recibidos</h3>
+      <div id="listaAdminPedidos"></div>
+    </div>
+  </section>
+</div>
+<div id="mensaje"></div>
+
+<script>
+// =====================================================
+// PARTE 1: LAS CLASES (las mismas del diagrama UML)
+// =====================================================
+const PENDIENTE = "Pendiente de despacho";
+const ENVIADO = "Enviado";
+const ENTREGADO = "Entregado";
+const CANCELADO = "Cancelado";
+
+// Clase padre: lo que tienen en común Cliente y Administrador
+class Usuario {
+  constructor(id, nombre, telefono) {
+    this.id = id;
+    this.nombre = nombre;
+    this.telefono = telefono;
   }
-  get id(){return this.#id} get nombre(){return this.#nombre} get telefono(){return this.#telefono}
-  consultarPedido(tienda){throw new Error("Cada subclase debe implementar consultarPedido().")}
+  consultarPedido(tienda) {
+    return [];   // cada clase hija lo hace a su manera (polimorfismo)
+  }
 }
+
+// HERENCIA: Cliente hereda de Usuario con "extends"
 class Cliente extends Usuario {
-  #direccion;
-  constructor(id,nombre,telefono,direccion){super(id,nombre,telefono);this.#direccion=direccion}
-  get direccion(){return this.#direccion}
-  consultarPedido(tienda){return tienda.pedidos.filter(p=>p.cliente.telefono===this.telefono)}  // solo los suyos
+  constructor(id, nombre, telefono, direccion) {
+    super(id, nombre, telefono);   // llama al constructor del padre
+    this.direccion = direccion;
+  }
+  // El cliente solo ve SUS pedidos (los de su teléfono)
+  consultarPedido(tienda) {
+    let mios = [];
+    for (let i = 0; i < tienda.pedidos.length; i++) {
+      if (tienda.pedidos[i].cliente.telefono === this.telefono) {
+        mios.push(tienda.pedidos[i]);
+      }
+    }
+    return mios;
+  }
 }
+
 class Administrador extends Usuario {
-  #usuario; #clave;
-  constructor(id,nombre,telefono,usuario,clave){super(id,nombre,telefono);this.#usuario=usuario;this.#clave=clave}
-  iniciarSesion(u,c){return u===this.#usuario && c===this.#clave}   // simulación académica
-  consultarPedido(tienda){return [...tienda.pedidos].reverse()}      // todos los pedidos
+  #clave;   // ENCAPSULAMIENTO: el # lo vuelve privado, nadie lo lee desde afuera
+  constructor(id, nombre, telefono, usuario, clave) {
+    super(id, nombre, telefono);
+    this.usuario = usuario;
+    this.#clave = clave;
+  }
+  iniciarSesion(u, c) {
+    return u === this.usuario && c === this.#clave;
+  }
+  // El administrador ve TODOS los pedidos
+  consultarPedido(tienda) {
+    return tienda.pedidos;
+  }
 }
+
 class Inventario {
-  #cantidad;
-  constructor(c){this.#cantidad=c}
-  consultarDisponibilidad(){return this.#cantidad}
-  actualizarCantidad(n){
-    if(!Number.isInteger(n)||n<0) throw new Error("La cantidad debe ser un número entero desde 0.");
-    this.#cantidad=n;
+  #cantidad;   // privado: solo se cambia con los métodos de abajo
+  constructor(cantidad) {
+    this.#cantidad = cantidad;
   }
-  retirarProducto(n){
-    if(n>this.#cantidad) throw new Error("No hay existencias suficientes.");
-    this.#cantidad-=n;
+  consultarDisponibilidad() {
+    return this.#cantidad;
+  }
+  actualizarCantidad(n) {
+    if (!Number.isInteger(n) || n < 0) {
+      throw new Error("La cantidad debe ser un número entero desde 0.");
+    }
+    this.#cantidad = n;
+  }
+  retirarProducto(n) {
+    if (n > this.#cantidad) {
+      throw new Error("No hay existencias suficientes.");
+    }
+    this.#cantidad = this.#cantidad - n;
   }
 }
+
 class Producto {
-  constructor(id,nombre,descripcion,categoria,precio,color,stock,foto){
-    Object.assign(this,{id,nombre,descripcion,categoria,precio,color,foto});
-    this.inventario=new Inventario(stock);           // el inventario solo se toca desde Producto
+  constructor(id, nombre, descripcion, precio, foto, stock) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.foto = foto;                      // nombre de la foto, sin terminación
+    this.inventario = new Inventario(stock);   // cada producto tiene su inventario
   }
-  disponible(){return this.inventario.consultarDisponibilidad()}
-  actualizarPrecio(p){if(!(p>0)) throw new Error("El precio debe ser mayor que 0.");this.precio=p}
-  descontarExistencias(n){this.inventario.retirarProducto(n)}
+  disponible() {
+    return this.inventario.consultarDisponibilidad();
+  }
+  descontarExistencias(cantidad) {
+    this.inventario.retirarProducto(cantidad);
+  }
 }
+
 class Carrito {
-  #items=new Map();
-  agregarProducto(p,n=1){
-    const nueva=(this.#items.get(p.id)?.cantidad||0)+n;
-    if(nueva>p.disponible()) throw new Error(p.disponible()===0?"Esa gorra se encuentra agotada.":"Solo quedan "+p.disponible()+" de esta gorra.");
-    this.#items.set(p.id,{producto:p,cantidad:nueva});
+  constructor() {
+    this.items = [];   // cada item es {producto, cantidad}
   }
-  eliminarProducto(id){this.#items.delete(id)}
-  modificarCantidad(id,n){
-    const it=this.#items.get(id); if(!it) return;
-    if(n<=0) return this.eliminarProducto(id);
-    if(n>it.producto.disponible()) throw new Error("No hay más unidades disponibles.");
-    it.cantidad=n;
+  agregarProducto(producto) {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].producto.id === producto.id) {
+        if (this.items[i].cantidad + 1 > producto.disponible()) {
+          throw new Error("Solo quedan " + producto.disponible() + " de esta gorra.");
+        }
+        this.items[i].cantidad++;
+        return;
+      }
+    }
+    if (producto.disponible() < 1) {
+      throw new Error("Esa gorra está agotada.");
+    }
+    this.items.push({ producto: producto, cantidad: 1 });
   }
-  items(){return [...this.#items.values()]}
-  unidades(){return this.items().reduce((s,i)=>s+i.cantidad,0)}
-  calcularTotal(){return this.items().reduce((s,i)=>s+i.producto.precio*i.cantidad,0)}
-  vaciarCarrito(){this.#items.clear()}
+  quitarUno(id) {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].producto.id === id) {
+        this.items[i].cantidad--;
+        if (this.items[i].cantidad <= 0) this.items.splice(i, 1);
+        return;
+      }
+    }
+  }
+  eliminarProducto(id) {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].producto.id === id) {
+        this.items.splice(i, 1);
+        return;
+      }
+    }
+  }
+  calcularTotal() {
+    let total = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      total += this.items[i].producto.precio * this.items[i].cantidad;
+    }
+    return total;
+  }
+  contarUnidades() {
+    let n = 0;
+    for (let i = 0; i < this.items.length; i++) n += this.items[i].cantidad;
+    return n;
+  }
+  vaciarCarrito() {
+    this.items = [];
+  }
 }
+
 class DetallePedido {
-  constructor(idProducto,nombre,cantidad,precioUnitario){Object.assign(this,{idProducto,nombre,cantidad,precioUnitario})}
-  calcularSubtotal(){return this.cantidad*this.precioUnitario}
+  constructor(idProducto, nombre, cantidad, precioUnitario) {
+    this.idProducto = idProducto;
+    this.nombre = nombre;
+    this.cantidad = cantidad;
+    this.precioUnitario = precioUnitario;
+  }
+  calcularSubtotal() {
+    return this.cantidad * this.precioUnitario;
+  }
 }
+
 class Pedido {
-  #estado;
-  constructor(id,fecha,cliente,detalles,estado=EstadoPedido.PENDIENTE){
-    Object.assign(this,{id,fecha,cliente,detalles}); this.#estado=estado;
+  constructor(id, fecha, cliente, detalles, estado) {
+    this.id = id;
+    this.fecha = fecha;
+    this.cliente = cliente;
+    this.detalles = detalles;   // lista de DetallePedido
+    this.estado = estado;
   }
-  get estado(){return this.#estado}
-  calcularTotal(){return this.detalles.reduce((s,d)=>s+d.calcularSubtotal(),0)}
-  siguientes(){return TRANS[this.#estado]||[]}
-  #validarCambio(nuevo){return this.siguientes().includes(nuevo)}   // método privado
-  actualizarEstado(nuevo){
-    if(!this.#validarCambio(nuevo)) throw new Error("Ese cambio no se puede hacer: el pedido está en “"+this.#estado+"”.");
-    this.#estado=nuevo;
+  calcularTotal() {
+    let total = 0;
+    for (let i = 0; i < this.detalles.length; i++) {
+      total += this.detalles[i].calcularSubtotal();
+    }
+    return total;
+  }
+  // A qué estados se puede pasar desde el actual
+  siguientesEstados() {
+    if (this.estado === PENDIENTE) return [ENVIADO, CANCELADO];
+    if (this.estado === ENVIADO) return [ENTREGADO];
+    return [];   // Entregado o Cancelado ya no cambian
+  }
+  actualizarEstado(nuevo) {
+    if (!this.siguientesEstados().includes(nuevo)) {
+      throw new Error("Ese cambio no se puede hacer: el pedido está en “" + this.estado + "”.");
+    }
+    this.estado = nuevo;
   }
 }
-/* ===== Tienda: junta todo y guarda en el navegador ===== */
-const SEMILLA=[
- {id:"g1",nombre:"Snapback Negra Clásica",descripcion:"Visera semi curva, ajuste snapback.",categoria:"Snapback",precio:65000,color:"#1b1f27",stock:12},
- {id:"g2",nombre:"Trucker Vino",descripcion:"Malla trasera, ideal para el calor.",categoria:"Trucker",precio:58000,color:"#7a1f36",stock:8},
- {id:"g3",nombre:"Dad Hat Arena",descripcion:"Visera semi curva y tela suave.",categoria:"Dad hat",precio:55000,color:"#c9b48a",stock:3},
- {id:"g4",nombre:"NY azul rey",descripcion:"Edición urbana limitada.",categoria:"Edición limitada",precio:78000,color:"#1f4bff",stock:5},
- {id:"g5",nombre:"Camuflada Selva",descripcion:"Estampado camuflado, ajustable.",categoria:"Snapback",precio:70000,color:"#4b5d3a",stock:0},
- {id:"g6",nombre:"Beisbolera Blanca visera negra",descripcion:"Bordado frontal NY.",categoria:"Clásica",precio:60000,color:"#e9e9e4",stock:10}];
+
+// La Tienda junta todas las clases y guarda los datos en el navegador
 class Tienda {
-  constructor(){this.sesion=false;this.admin=new Administrador(1,"Admin","3000000000","admin","1234");this.cargar()}
-  cargar(){
-    let d=null;
-    try{d=JSON.parse(localStorage.getItem("capone")||"null")}catch(e){}
-    if(!d||!Array.isArray(d.productos)||!Array.isArray(d.pedidos)) d={productos:SEMILLA,pedidos:[],sig:1};
-    this.sig=d.sig||1;
-    this.productos=d.productos.map(p=>new Producto(p.id,p.nombre,p.descripcion,p.categoria,p.precio,p.color,p.stock,p.foto));
-    this.pedidos=d.pedidos.map(o=>new Pedido(o.id,o.fecha,new Cliente(0,o.cliente.nombre,o.cliente.telefono,o.cliente.direccion),
-      o.detalles.map(x=>new DetallePedido(x.idProducto,x.nombre,x.cantidad,x.precioUnitario)),o.estado));
+  constructor() {
+    this.productos = [];
+    this.pedidos = [];
+    this.contador = 1;   // para numerar los pedidos
+    this.admin = new Administrador(1, "Admin", "3000000000", "admin", "1234");
+    this.cargar();
   }
-  guardar(){
-    const d={sig:this.sig,
-      productos:this.productos.map(p=>({id:p.id,nombre:p.nombre,descripcion:p.descripcion,categoria:p.categoria,precio:p.precio,color:p.color,foto:p.foto,stock:p.disponible()})),
-      pedidos:this.pedidos.map(o=>({id:o.id,fecha:o.fecha,estado:o.estado,cliente:{nombre:o.cliente.nombre,telefono:o.cliente.telefono,direccion:o.cliente.direccion},detalles:o.detalles}))};
-    try{localStorage.setItem("capone",JSON.stringify(d))}catch(e){}
+  cargarSemilla() {
+    this.productos = [
+      new Producto("g1", "Snapback Negra Clásica", "Visera plana, ajuste snapback.", 65000, "g1", 12),
+      new Producto("g2", "Trucker Vino", "Malla trasera, ideal para el calor.", 58000, "g2", 8),
+      new Producto("g3", "Dad Hat Arena", "Visera curva y tela suave.", 55000, "g3", 3),
+      new Producto("g4", "Visera Azul Eléctrico", "Edición urbana limitada.", 78000, "g4", 5),
+      new Producto("g5", "Camuflada Selva", "Estampado camuflado, ajustable.", 70000, "g5", 0),
+      new Producto("g6", "Beisbolera Blanca", "Bordado frontal CapOne.", 60000, "g6", 10)
+    ];
+    this.pedidos = [];
+    this.contador = 1;
   }
-  buscar(id){return this.productos.find(p=>p.id===id)}
-  buscarPedido(id){return this.pedidos.find(p=>p.id===id)}
-  crearPedido(datos,carrito){
-    const nombre=(datos.nombre||"").trim(),tel=(datos.telefono||"").trim(),dir=(datos.direccion||"").trim();
-    if(carrito.items().length===0) throw new Error("El carrito está vacío.");
-    if(!nombre||!dir||!/^\d{7,12}$/.test(tel)) throw new Error("Revisa tus datos: nombre, teléfono (solo números) y dirección.");
-    carrito.items().forEach(i=>{if(i.cantidad>i.producto.disponible()) throw new Error("Ya no alcanzan las unidades de "+i.producto.nombre+".")});
-    const detalles=carrito.items().map(i=>{i.producto.descontarExistencias(i.cantidad);return new DetallePedido(i.producto.id,i.producto.nombre,i.cantidad,i.producto.precio)});
-    const p=new Pedido("P-"+String(this.sig++).padStart(3,"0"),new Date().toISOString(),new Cliente(0,nombre,tel,dir),detalles);
-    this.pedidos.push(p); carrito.vaciarCarrito(); this.guardar(); return p;
+  guardar() {
+    let datos = { contador: this.contador, productos: [], pedidos: [] };
+    for (let i = 0; i < this.productos.length; i++) {
+      let p = this.productos[i];
+      datos.productos.push({ id: p.id, nombre: p.nombre, descripcion: p.descripcion, precio: p.precio, foto: p.foto, stock: p.disponible() });
+    }
+    for (let i = 0; i < this.pedidos.length; i++) {
+      let p = this.pedidos[i];
+      datos.pedidos.push({ id: p.id, fecha: p.fecha, estado: p.estado,
+        cliente: { nombre: p.cliente.nombre, telefono: p.cliente.telefono, direccion: p.cliente.direccion },
+        detalles: p.detalles });
+    }
+    localStorage.setItem("capone2", JSON.stringify(datos));
   }
-  cambiarEstado(id,nuevo){
-    const p=this.buscarPedido(id); if(!p) throw new Error("Pedido no encontrado.");
-    p.actualizarEstado(nuevo);
-    if(nuevo===EstadoPedido.CANCELADO) p.detalles.forEach(d=>{const pr=this.buscar(d.idProducto);if(pr) pr.inventario.actualizarCantidad(pr.disponible()+d.cantidad)});
+  cargar() {
+    let texto = localStorage.getItem("capone2");
+    if (texto === null) {
+      this.cargarSemilla();
+      return;
+    }
+    try {
+      let datos = JSON.parse(texto);
+      this.contador = datos.contador;
+      for (let i = 0; i < datos.productos.length; i++) {
+        let p = datos.productos[i];
+        this.productos.push(new Producto(p.id, p.nombre, p.descripcion, p.precio, p.foto, p.stock));
+      }
+      for (let i = 0; i < datos.pedidos.length; i++) {
+        let d = datos.pedidos[i];
+        let detalles = [];
+        for (let j = 0; j < d.detalles.length; j++) {
+          let x = d.detalles[j];
+          detalles.push(new DetallePedido(x.idProducto, x.nombre, x.cantidad, x.precioUnitario));
+        }
+        let cliente = new Cliente(0, d.cliente.nombre, d.cliente.telefono, d.cliente.direccion);
+        this.pedidos.push(new Pedido(d.id, d.fecha, cliente, detalles, d.estado));
+      }
+    } catch (e) {
+      this.cargarSemilla();   // si algo salió mal, empezamos de cero
+    }
+  }
+  buscarProducto(id) {
+    for (let i = 0; i < this.productos.length; i++) {
+      if (this.productos[i].id === id) return this.productos[i];
+    }
+    return null;
+  }
+  buscarPedido(id) {
+    for (let i = 0; i < this.pedidos.length; i++) {
+      if (this.pedidos[i].id === id) return this.pedidos[i];
+    }
+    return null;
+  }
+  eliminarProducto(id) {
+    for (let i = 0; i < this.productos.length; i++) {
+      if (this.productos[i].id === id) {
+        this.productos.splice(i, 1);
+        break;
+      }
+    }
     this.guardar();
   }
-  actualizarProducto(id,precio,stock){const p=this.buscar(id);p.actualizarPrecio(precio);p.inventario.actualizarCantidad(stock);this.guardar()}
-  agregarProducto(d){
-    const precio=Number(d.precio),stock=Number(d.stock);
-    if(!d.nombre.trim()) throw new Error("El producto necesita un nombre.");
-    const p=new Producto("g"+Date.now().toString(36),d.nombre.trim(),d.descripcion.trim(),d.categoria.trim()||"General",1,col(d.color),0,(d.foto||"").trim());
-    p.actualizarPrecio(precio); p.inventario.actualizarCantidad(stock);
-    this.productos.push(p); this.guardar();
+  crearPedido(nombre, telefono, direccion, carrito) {
+    if (carrito.items.length === 0) throw new Error("El carrito está vacío.");
+    if (nombre === "" || direccion === "" || !/^[0-9]{7,12}$/.test(telefono)) {
+      throw new Error("Revisa tus datos: nombre, teléfono (solo números) y dirección.");
+    }
+    // primero revisamos que haya existencias para todo
+    for (let i = 0; i < carrito.items.length; i++) {
+      let it = carrito.items[i];
+      if (it.cantidad > it.producto.disponible()) {
+        throw new Error("Ya no alcanzan las unidades de " + it.producto.nombre + ".");
+      }
+    }
+    // ahora sí: descontamos y armamos los detalles
+    let detalles = [];
+    for (let i = 0; i < carrito.items.length; i++) {
+      let it = carrito.items[i];
+      it.producto.descontarExistencias(it.cantidad);
+      detalles.push(new DetallePedido(it.producto.id, it.producto.nombre, it.cantidad, it.producto.precio));
+    }
+    let id = "P-" + String(this.contador).padStart(3, "0");
+    this.contador++;
+    let cliente = new Cliente(0, nombre, telefono, direccion);
+    let pedido = new Pedido(id, new Date().toISOString(), cliente, detalles, PENDIENTE);
+    this.pedidos.push(pedido);
+    carrito.vaciarCarrito();
+    this.guardar();
+    return pedido;
   }
-  eliminarProducto(id,carrito){this.productos=this.productos.filter(p=>p.id!==id);carrito.eliminarProducto(id);this.guardar()}
+  cambiarEstado(idPedido, nuevo) {
+    let pedido = this.buscarPedido(idPedido);
+    if (pedido === null) throw new Error("Pedido no encontrado.");
+    pedido.actualizarEstado(nuevo);
+    if (nuevo === CANCELADO) {
+      // si se cancela, las gorras vuelven al inventario
+      for (let i = 0; i < pedido.detalles.length; i++) {
+        let d = pedido.detalles[i];
+        let producto = this.buscarProducto(d.idProducto);
+        if (producto !== null) {
+          producto.inventario.actualizarCantidad(producto.disponible() + d.cantidad);
+        }
+      }
+    }
+    this.guardar();
+  }
 }
-/* ===== Interfaz ===== */
-const $=s=>document.querySelector(s);
-const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const cop=n=>new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(n);
-const col=c=>/^#[0-9a-f]{6}$/i.test(c)?c:"#1b1f27";
-const gorra=c=>`<svg viewBox="0 0 130 80" role="img" aria-label="Gorra"><path d="M18 56C18 26 38 12 60 12s42 14 42 44z" fill="${c}" stroke="currentColor" stroke-width="2"/><path d="M18 56h84c16 0 26 5 26 9 0 5-14 7-34 7H18z" fill="${c}" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="12" r="4" fill="${c}" stroke="currentColor" stroke-width="2"/></svg>`;
-/* Fotos: se buscan en la carpeta img/ (si no existen, se dibuja la gorra) */
-const EXT=["png","jpg","jpeg","webp","svg"];
-const foto=p=>{const c=col(p.color);
- return p.foto&&/^[\w\-. ]+\.\w+$/.test(p.foto)
-  ?`<img src="img/${encodeURI(p.foto)}" alt="${esc(p.nombre)}" data-fijo="1" data-c="${c}">`
-  :`<img src="img/${esc(p.id)}.png" alt="${esc(p.nombre)}" data-b="img/${esc(p.id)}" data-n="0" data-c="${c}">`};
-function sig(i){
- const n=Number(i.dataset.n||0)+1;
- if(!i.dataset.fijo&&i.dataset.b&&n<EXT.length){i.dataset.n=n;i.src=i.dataset.b+"."+EXT[n];return}
- if(i.dataset.c)i.outerHTML=gorra(i.dataset.c);else i.remove();
+
+// =====================================================
+// PARTE 2: LA PÁGINA (lo que ve y toca la persona)
+// =====================================================
+const tienda = new Tienda();
+const carrito = new Carrito();
+let telefonoBuscado = "";
+let sesionAdmin = false;
+
+function el(id) { return document.getElementById(id); }
+function dinero(n) { return "$" + n.toLocaleString("es-CO"); }
+// evita que lo que escribe la persona dañe la página
+function seguro(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+function avisar(texto, esError) {
+  let m = el("mensaje");
+  m.textContent = texto;
+  m.className = esError ? "error" : "";
+  m.style.display = "block";
+  setTimeout(function () { m.style.display = "none"; }, 3500);
 }
-document.addEventListener("error",e=>{if(e.target.tagName==="IMG")sig(e.target)},true);
-const T=new Tienda(),C=new Carrito();
-let vista="catalogo",tel="",ultimo=null;
-const VISTAS=["catalogo","carrito","pedidos","admin"];
-function aviso(m,mal){const t=$("#aviso");t.textContent=m;t.className="on"+(mal?" mal":"");clearTimeout(aviso.h);aviso.h=setTimeout(()=>{t.className=""},3600)}
-function ir(v){vista=v;if(v!=="carrito")ultimo=null;if(location.hash!=="#"+v)location.hash=v;pintar()}
-function tarjeta(p,admin){
-  const acc=p.siguientes();
-  let a="";
-  if(admin) a=acc.length?`<div class="acc"><select id="es-${esc(p.id)}" aria-label="Nuevo estado">${acc.map(e=>`<option>${esc(e)}</option>`).join("")}</select><button class="b s" data-act="estado" data-id="${esc(p.id)}">Actualizar estado</button></div>`:`<p class="m">Este pedido ya no admite cambios.</p>`;
-  else if(acc.includes(EstadoPedido.CANCELADO)) a=`<div class="acc"><button class="g s" data-act="cancelar" data-id="${esc(p.id)}">Cancelar pedido</button></div>`;
-  return `<article class="ped"><strong>${esc(p.id)}</strong> <span class="est">${esc(p.estado)}</span>
-  <p class="m">${new Date(p.fecha).toLocaleString("es-CO")} · ${esc(p.cliente.nombre)} · ${esc(p.cliente.telefono)} · ${esc(p.cliente.direccion)}</p>
-  <ul>${p.detalles.map(d=>`<li>${d.cantidad} × ${esc(d.nombre)} (${cop(d.precioUnitario)}) = ${cop(d.calcularSubtotal())}</li>`).join("")}</ul>
-  <strong>Total: ${cop(p.calcularTotal())}</strong>${a}</article>`;
+
+// Fotos: busca img/NOMBRE.png y, si no existe, prueba con otras terminaciones
+const terminaciones = ["png", "jpg", "jpeg", "webp"];
+function foto(nombre, alt) {
+  return '<img src="img/' + nombre + '.png" data-nombre="' + nombre + '" alt="' + seguro(alt) + '" onerror="probar(this)">';
 }
-const pantallas={
-catalogo(){return `<h2>Catálogo</h2><p class="m">La disponibilidad sale del inventario en tiempo real: si una gorra se agota, ya no se puede pedir.</p><div class="grid">${T.productos.map(p=>{const d=p.disponible(),c=col(p.color);
- return `<article class="card"><div class="img" style="background:color-mix(in srgb,${c} 16%,var(--card))">${foto(p)}</div><div class="in"><h3>${esc(p.nombre)}</h3><p class="m">${esc(p.descripcion)}</p><p class="m">${esc(p.categoria)}</p><p class="pr">${cop(p.precio)}</p><p class="${d?(d<4?"w":"ok"):"mal"}">${d?(d<4?"Quedan "+d:"Disponible"):"Agotada"}</p><button class="b" data-act="add" data-id="${esc(p.id)}" ${d?"":"disabled"}>Agregar al carrito</button></div></article>`}).join("")}</div>`},
-carrito(){
- let o=`<h2>Tu carrito</h2>`;
- if(ultimo) o+=`<div class="ped"><strong>¡Listo, ${esc(ultimo.cliente.nombre)}! Tu pedido ${esc(ultimo.id)} quedó registrado.</strong><p class="m">Total ${cop(ultimo.calcularTotal())}. Estado: ${esc(ultimo.estado)}. Con tu teléfono puedes consultarlo en “Mis pedidos”.</p></div>`;
- const it=C.items();
- if(!it.length) return o+`<p class="m">Todavía no has agregado gorras.</p><button class="b" data-ir="catalogo">Ver el catálogo</button>`;
- o+=it.map(i=>`<div class="fila"><span><strong>${esc(i.producto.nombre)}</strong><br><span class="m">${cop(i.producto.precio)} c/u</span></span><span class="qty"><button class="g s" data-act="menos" data-id="${esc(i.producto.id)}" aria-label="Quitar una">−</button><strong>${i.cantidad}</strong><button class="g s" data-act="mas" data-id="${esc(i.producto.id)}" aria-label="Agregar una">+</button><button class="g s" data-act="quitar" data-id="${esc(i.producto.id)}">Quitar</button></span></div>`).join("");
- return o+`<p class="tot">Total: ${cop(C.calcularTotal())}</p><form class="f" data-f="pedido"><h3>Datos para el envío</h3>
- <label>Nombre completo<input name="nombre" required autocomplete="name"></label>
- <label>Teléfono<input name="telefono" required inputmode="numeric" autocomplete="tel" placeholder="3001234567"></label>
- <label>Dirección de entrega<input name="direccion" required autocomplete="street-address"></label>
- <button class="b" type="submit">Confirmar pedido</button><button class="g" type="button" data-act="vaciar">Vaciar carrito</button></form>
- <small class="n">Pago simulado: en esta etapa no hay conexión con bancos.</small>`},
-pedidos(){
- const lista=tel?new Cliente(0,"",tel,"").consultarPedido(T):[];
- return `<h2>Mis pedidos</h2><p class="m">Escribe el teléfono que usaste al comprar.</p><form class="f" data-f="buscar"><label>Teléfono<input name="telefono" required inputmode="numeric" value="${esc(tel)}"></label><button class="b" type="submit">Buscar</button></form>`+
- (tel?(lista.length?lista.slice().reverse().map(p=>tarjeta(p,false)).join(""):`<p class="m">No encontramos pedidos con ese teléfono.</p>`):"")},
-admin(){
- if(!T.sesion) return `<h2>Administrar</h2><form class="f" data-f="login"><label>Usuario<input name="usuario" required autocomplete="username"></label><label>Contraseña<input name="clave" type="password" required autocomplete="current-password"></label><button class="b" type="submit">Entrar</button></form><small class="n">Demo académica: usuario admin, contraseña 1234.</small>`;
- return `<h2>Productos e inventario</h2><button class="g s" data-act="salir">Cerrar sesión</button>`+
- T.productos.map(p=>`<div class="ed"><strong>${esc(p.nombre)}</strong><label>Precio<input id="pr-${esc(p.id)}" type="number" min="1" value="${p.precio}"></label><label>Stock<input id="st-${esc(p.id)}" type="number" min="0" value="${p.disponible()}"></label><button class="b s" data-act="guardar" data-id="${esc(p.id)}">Guardar</button><button class="g s" data-act="borrar" data-id="${esc(p.id)}">Eliminar</button></div>`).join("")+
- `<form class="f" data-f="nuevo"><h3>Agregar producto</h3><label>Nombre<input name="nombre" required></label><label>Descripción<input name="descripcion"></label><label>Categoría<input name="categoria"></label><label>Precio<input name="precio" type="number" min="1" required></label><label>Cantidad inicial<input name="stock" type="number" min="0" value="0" required></label><label>Nombre de la foto (opcional, ej. mi-gorra.jpg)<input name="foto"></label><label>Color de la gorra<input name="color" type="color" value="#1f4bff"></label><button class="b" type="submit">Agregar producto</button></form>
- <h2 style="margin-top:32px">Pedidos recibidos</h2>`+
- (T.pedidos.length?T.admin.consultarPedido(T).map(p=>tarjeta(p,true)).join(""):`<p class="m">Aún no hay pedidos.</p>`)}
-};
-function pintar(){
- document.querySelectorAll("nav button").forEach(b=>{b.dataset.ir===vista?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
- $("#nc").textContent="Carrito ("+C.unidades()+")";
- $("#app").innerHTML=pantallas[vista]();
+function probar(img) {
+  img.intentos = (img.intentos || 0) + 1;
+  if (img.intentos < terminaciones.length) {
+    img.src = "img/" + img.dataset.nombre + "." + terminaciones[img.intentos];
+  } else {
+    img.style.visibility = "hidden";   // no hay foto con ese nombre
+  }
 }
-document.addEventListener("click",e=>{
- const b=e.target.closest("[data-act],[data-ir]"); if(!b) return;
- if(b.dataset.ir){ir(b.dataset.ir);return}
- const a=b.dataset.act,id=b.dataset.id,en=n=>document.getElementById(n+id);
- try{
-  if(a==="add"){C.agregarProducto(T.buscar(id),1);aviso("Agregada al carrito.")}
-  else if(a==="mas"||a==="menos"){const i=C.items().find(x=>x.producto.id===id);C.modificarCantidad(id,i.cantidad+(a==="mas"?1:-1))}
-  else if(a==="quitar")C.eliminarProducto(id);
-  else if(a==="vaciar")C.vaciarCarrito();
-  else if(a==="cancelar"){T.cambiarEstado(id,EstadoPedido.CANCELADO);aviso("Pedido cancelado. Las gorras volvieron al inventario.")}
-  else if(a==="salir")T.sesion=false;
-  else if(a==="guardar"){T.actualizarProducto(id,Number(en("pr-").value),Number(en("st-").value));aviso("Producto actualizado.")}
-  else if(a==="borrar"){T.eliminarProducto(id,C);aviso("Producto eliminado.")}
-  else if(a==="estado"){T.cambiarEstado(id,en("es-").value);aviso("Estado actualizado.")}
- }catch(err){aviso(err.message,true);return}
- pintar();
-});
-document.addEventListener("submit",e=>{
- e.preventDefault();
- const f=e.target,k=f.dataset.f,d=Object.fromEntries(new FormData(f));
- try{
-  if(k==="pedido"){ultimo=T.crearPedido(d,C);tel=d.telefono.trim();aviso("¡Pedido registrado!")}
-  else if(k==="buscar")tel=d.telefono.trim();
-  else if(k==="login"){if(!T.admin.iniciarSesion(d.usuario,d.clave)) throw new Error("Usuario o contraseña incorrectos.");T.sesion=true}
-  else if(k==="nuevo"){T.agregarProducto(d);aviso("Producto agregado.")}
- }catch(err){aviso(err.message,true);return}
- pintar();
-});
-window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(VISTAS.includes(h)&&h!==vista){vista=h;pintar()}});
-{const h=location.hash.slice(1);if(VISTAS.includes(h))vista=h}
-pintar();
+
+function mostrar(nombre) {
+  let secciones = ["catalogo", "carrito", "pedidos", "admin"];
+  for (let i = 0; i < secciones.length; i++) {
+    el(secciones[i]).style.display = (secciones[i] === nombre) ? "block" : "none";
+  }
+  if (nombre !== "carrito") el("confirmacion").innerHTML = "";
+}
+
+function pintarCatalogo() {
+  let html = "";
+  for (let i = 0; i < tienda.productos.length; i++) {
+    let p = tienda.productos[i];
+    let d = p.disponible();
+    let estado = "";
+    if (d === 0) estado = '<p class="rojo">Agotada</p>';
+    else if (d < 4) estado = '<p class="amarillo">Quedan ' + d + '</p>';
+    else estado = '<p class="verde">Disponible</p>';
+    html += '<div class="tarjeta">' + foto(p.foto, p.nombre) + '<div class="info">' +
+      '<h3>' + seguro(p.nombre) + '</h3><p class="suave">' + seguro(p.descripcion) + '</p>' +
+      '<p class="precio">' + dinero(p.precio) + '</p>' + estado +
+      '<button data-id="' + p.id + '" onclick="agregar(this.dataset.id)"' + (d === 0 ? ' disabled' : '') + '>Agregar al carrito</button>' +
+      '</div></div>';
+  }
+  el("listaCatalogo").innerHTML = html;
+}
+
+function pintarCarrito() {
+  let html = "";
+  for (let i = 0; i < carrito.items.length; i++) {
+    let it = carrito.items[i];
+    html += '<div class="fila"><span><strong>' + seguro(it.producto.nombre) + '</strong><br><span class="suave">' + dinero(it.producto.precio) + ' c/u</span></span>' +
+      '<span><button class="peq" data-id="' + it.producto.id + '" onclick="menos(this.dataset.id)">−</button> <strong>' + it.cantidad + '</strong> ' +
+      '<button class="peq" data-id="' + it.producto.id + '" onclick="agregar(this.dataset.id)">+</button> ' +
+      '<button class="peq claro" data-id="' + it.producto.id + '" onclick="quitar(this.dataset.id)">Quitar</button></span></div>';
+  }
+  let hay = carrito.items.length > 0;
+  if (hay) html += '<p class="total">Total: ' + dinero(carrito.calcularTotal()) + '</p>';
+  else html += '<p class="suave">Todavía no has agregado gorras.</p>';
+  el("listaCarrito").innerHTML = html;
+  el("datosEnvio").style.display = hay ? "block" : "none";
+}
+
+// arma el cuadro de un pedido (para el cliente o para el administrador)
+function htmlPedido(p, esAdmin) {
+  let lista = "";
+  for (let i = 0; i < p.detalles.length; i++) {
+    let d = p.detalles[i];
+    lista += '<li>' + d.cantidad + ' × ' + seguro(d.nombre) + ' = ' + dinero(d.calcularSubtotal()) + '</li>';
+  }
+  let acciones = "";
+  let sig = p.siguientesEstados();
+  if (esAdmin && sig.length > 0) {
+    let opciones = "";
+    for (let i = 0; i < sig.length; i++) opciones += '<option>' + sig[i] + '</option>';
+    acciones = '<p><select id="estado_' + p.id + '" style="display:inline;width:auto">' + opciones + '</select> ' +
+      '<button class="peq" data-id="' + p.id + '" onclick="cambiarEstado(this.dataset.id)">Actualizar estado</button></p>';
+  } else if (!esAdmin && sig.includes(CANCELADO)) {
+    acciones = '<p><button class="peq claro" data-id="' + p.id + '" onclick="cancelarPedido(this.dataset.id)">Cancelar pedido</button></p>';
+  }
+  return '<div class="pedido"><strong>' + p.id + '</strong> <span class="estado">' + p.estado + '</span>' +
+    '<p class="suave">' + new Date(p.fecha).toLocaleString("es-CO") + ' · ' + seguro(p.cliente.nombre) + ' · ' + seguro(p.cliente.telefono) + ' · ' + seguro(p.cliente.direccion) + '</p>' +
+    '<ul>' + lista + '</ul><strong>Total: ' + dinero(p.calcularTotal()) + '</strong>' + acciones + '</div>';
+}
+
+function pintarMisPedidos() {
+  let html = "";
+  if (telefonoBuscado !== "") {
+    let cliente = new Cliente(0, "", telefonoBuscado, "");
+    let lista = cliente.consultarPedido(tienda);       // polimorfismo: versión del Cliente
+    if (lista.length === 0) html = '<p class="suave">No encontramos pedidos con ese teléfono.</p>';
+    for (let i = lista.length - 1; i >= 0; i--) html += htmlPedido(lista[i], false);
+  }
+  el("listaMisPedidos").innerHTML = html;
+}
+
+function pintarAdmin() {
+  el("loginAdmin").style.display = sesionAdmin ? "none" : "block";
+  el("panelAdmin").style.display = sesionAdmin ? "block" : "none";
+  if (!sesionAdmin) return;
+  let html = "";
+  for (let i = 0; i < tienda.productos.length; i++) {
+    let p = tienda.productos[i];
+    html += '<div class="editar"><strong>' + seguro(p.nombre) + '</strong>' +
+      '<label>Precio <input id="precio_' + p.id + '" type="number" value="' + p.precio + '"></label>' +
+      '<label>Stock <input id="stock_' + p.id + '" type="number" value="' + p.disponible() + '"></label>' +
+      '<button class="peq" data-id="' + p.id + '" onclick="guardarProducto(this.dataset.id)">Guardar</button>' +
+      '<button class="peq claro" data-id="' + p.id + '" onclick="borrarProducto(this.dataset.id)">Eliminar</button></div>';
+  }
+  el("listaAdminProductos").innerHTML = html;
+  let todos = tienda.admin.consultarPedido(tienda);     // polimorfismo: versión del Administrador
+  let htmlPedidos = "";
+  for (let i = todos.length - 1; i >= 0; i--) htmlPedidos += htmlPedido(todos[i], true);
+  if (todos.length === 0) htmlPedidos = '<p class="suave">Aún no hay pedidos.</p>';
+  el("listaAdminPedidos").innerHTML = htmlPedidos;
+}
+
+function actualizar() {
+  pintarCatalogo();
+  pintarCarrito();
+  pintarMisPedidos();
+  pintarAdmin();
+  el("btnCarrito").textContent = "Carrito (" + carrito.contarUnidades() + ")";
+}
+
+// ---------- Acciones de los botones ----------
+function agregar(id) {
+  try {
+    carrito.agregarProducto(tienda.buscarProducto(id));
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+function menos(id) { carrito.quitarUno(id); actualizar(); }
+function quitar(id) { carrito.eliminarProducto(id); actualizar(); }
+function vaciar() { carrito.vaciarCarrito(); actualizar(); }
+
+function confirmarPedido() {
+  let nombre = el("nombre").value.trim();
+  let telefono = el("telefono").value.trim();
+  let direccion = el("direccion").value.trim();
+  try {
+    let pedido = tienda.crearPedido(nombre, telefono, direccion, carrito);
+    telefonoBuscado = telefono;
+    el("confirmacion").innerHTML = '<div class="pedido"><strong>¡Listo, ' + seguro(nombre) + '! Tu pedido ' + pedido.id + ' quedó registrado.</strong>' +
+      '<p class="suave">Total ' + dinero(pedido.calcularTotal()) + '. Estado: ' + pedido.estado + '. Con tu teléfono lo consultas en “Mis pedidos”.</p></div>';
+    el("nombre").value = ""; el("telefono").value = ""; el("direccion").value = "";
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+
+function buscarPedidos() {
+  telefonoBuscado = el("telBuscar").value.trim();
+  actualizar();
+}
+function cancelarPedido(id) {
+  try {
+    tienda.cambiarEstado(id, CANCELADO);
+    avisar("Pedido cancelado. Las gorras volvieron al inventario.");
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+
+function entrarAdmin() {
+  if (tienda.admin.iniciarSesion(el("usuario").value, el("clave").value)) {
+    sesionAdmin = true;
+    el("clave").value = "";
+  } else {
+    avisar("Usuario o contraseña incorrectos.", true);
+  }
+  actualizar();
+}
+function salirAdmin() { sesionAdmin = false; actualizar(); }
+
+function guardarProducto(id) {
+  try {
+    let p = tienda.buscarProducto(id);
+    let precio = Number(el("precio_" + id).value);
+    let stock = Number(el("stock_" + id).value);
+    if (!(precio > 0)) throw new Error("El precio debe ser mayor que 0.");
+    p.inventario.actualizarCantidad(stock);
+    p.precio = precio;
+    tienda.guardar();
+    avisar("Producto actualizado.");
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+function borrarProducto(id) {
+  tienda.eliminarProducto(id);
+  carrito.eliminarProducto(id);
+  avisar("Producto eliminado.");
+  actualizar();
+}
+function agregarProducto() {
+  try {
+    let nombre = el("nuevoNombre").value.trim();
+    let precio = Number(el("nuevoPrecio").value);
+    let stock = Number(el("nuevoStock").value);
+    let id = "g" + Date.now().toString(36);
+    let nombreFoto = el("nuevoFoto").value.trim().replace(/[^A-Za-z0-9_-]/g, "");
+    if (nombre === "") throw new Error("El producto necesita un nombre.");
+    if (!(precio > 0)) throw new Error("El precio debe ser mayor que 0.");
+    let p = new Producto(id, nombre, "", precio, nombreFoto === "" ? id : nombreFoto, 0);
+    p.inventario.actualizarCantidad(stock);
+    tienda.productos.push(p);
+    tienda.guardar();
+    el("nuevoNombre").value = ""; el("nuevoPrecio").value = ""; el("nuevoStock").value = "0"; el("nuevoFoto").value = "";
+    avisar("Producto agregado.");
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+function cambiarEstado(id) {
+  try {
+    tienda.cambiarEstado(id, el("estado_" + id).value);
+    avisar("Estado actualizado.");
+  } catch (e) { avisar(e.message, true); return; }
+  actualizar();
+}
+
+// Al abrir la página
+mostrar("catalogo");
+actualizar();
 </script>
 </body>
 </html>
