@@ -54,7 +54,7 @@ small.n{color:var(--mute);display:block;margin-top:12px}
 <body>
 <div class="wrap">
   <h1 class="marca"><img class="logo" src="img/logo.png" alt="Logo de CapOne" data-b="img/logo" data-n="0">CapOne</h1>
-  <p class="lema">Gorras urbanas y exclusivas. Mira lo que hay, arma tu pedido y nosotros lo despachamos.</p>
+  <p class="lema">Las gorras más exclusivas en el valle de Aburrá. Arma tu pedido y nosotros lo despachamosa cualquier parte del país.</p>
   <nav aria-label="Secciones">
     <button data-ir="catalogo">Catálogo</button>
     <button data-ir="carrito" id="nc">Carrito</button>
@@ -152,12 +152,12 @@ class Pedido {
 }
 /* ===== Tienda: junta todo y guarda en el navegador ===== */
 const SEMILLA=[
- {id:"g1",nombre:"Snapback Negra Clásica",descripcion:"Visera plana, ajuste snapback.",categoria:"Snapback",precio:65000,color:"#1b1f27",stock:12},
+ {id:"g1",nombre:"Snapback Negra Clásica",descripcion:"Visera semi curva, ajuste snapback.",categoria:"Snapback",precio:65000,color:"#1b1f27",stock:12},
  {id:"g2",nombre:"Trucker Vino",descripcion:"Malla trasera, ideal para el calor.",categoria:"Trucker",precio:58000,color:"#7a1f36",stock:8},
- {id:"g3",nombre:"Dad Hat Arena",descripcion:"Visera curva y tela suave.",categoria:"Dad hat",precio:55000,color:"#c9b48a",stock:3},
- {id:"g4",nombre:"Visera Azul Eléctrico",descripcion:"Edición urbana limitada.",categoria:"Edición limitada",precio:78000,color:"#1f4bff",stock:5},
+ {id:"g3",nombre:"Dad Hat Arena",descripcion:"Visera semi curva y tela suave.",categoria:"Dad hat",precio:55000,color:"#c9b48a",stock:3},
+ {id:"g4",nombre:"NY azul rey",descripcion:"Edición urbana limitada.",categoria:"Edición limitada",precio:78000,color:"#1f4bff",stock:5},
  {id:"g5",nombre:"Camuflada Selva",descripcion:"Estampado camuflado, ajustable.",categoria:"Snapback",precio:70000,color:"#4b5d3a",stock:0},
- {id:"g6",nombre:"Beisbolera Blanca",descripcion:"Bordado frontal CapOne.",categoria:"Clásica",precio:60000,color:"#e9e9e4",stock:10}];
+ {id:"g6",nombre:"Beisbolera Blanca visera negra",descripcion:"Bordado frontal NY.",categoria:"Clásica",precio:60000,color:"#e9e9e4",stock:10}];
 class Tienda {
   constructor(){this.sesion=false;this.admin=new Administrador(1,"Admin","3000000000","admin","1234");this.cargar()}
   cargar(){
